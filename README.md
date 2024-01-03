@@ -92,8 +92,71 @@ ermöglicht die Wiederverwendung von Code durch das Einbetten von Strukturen.
 ### Java
 Polymorphismus ist ein Konzept der objektorientierten Programmierung, das die Fähigkeit
 eines Objekts beschreibt, in verschiedenen Formen oder Typen aufzutreten.
-In Java kann ein Objekt einer Klasse Subklasse verwendet werden kann, falls ein Objekt einer Superklasse erwartet wird. Ferner wird Polymorphismus durch Overloading und Overriding realisiert. Überladen ermöglicht es,
+In Java kann ein Objekt einer Klasse Subklasse verwendet werden kann, falls ein Objekt einer Superklasse erwartet wird. Ferner wird Polymorphismus durch `Overloading` und `Overriding` realisiert. `Overloading` ermöglicht es,
 mehrere Methoden mit demselben Namens in einer Klasse zu haben, solange sie
 verschiedene Parameter haben.
-Überschreiben tritt auf, wenn eine abgeleitete Klasse eine Methode ihrer Basisklasse mit
+`Overriding` tritt auf, wenn eine abgeleitete Klasse eine Methode ihrer Basisklasse mit
 derselben Signatur implementiert.
+
+### Go
+In Go wird Polymorphismus mithilfe von Interfaces erreicht. Jeder Typ, der alle Methoden einer Schnittstelle implementiert, erfüllt diese Schnittstelle. Im Gegensatz zu Java unterstützt Go weder Methodenüberladung noch -überschreibung. Im obigen Beispiel ist Rectangle ein Subtyp von Shape, da es alle Methoden (hier nur `Area()`) implementiert.
+
+## Verkapselung
+
+### Java
+In Java können Klassen mit `public`, `private` oder `protected` deklariert werden, um die
+Zugriffs- und Sichtbarkeitsdefinition zu deklarieren.  Der Zugriff erfolgt dann ggfs. über Getter- und Setter-Methoden
+
+### Go
+In Go werden großgeschriebene Bezeichner zur Kennzeichnung `public` Sichtbarkeit verwendet und Kleinbuchstaben für `package-private` Sichtbarkeit.
+Es gibt keine konkreten Äquivalente für `protected` oder `private`.
+Go empfiehlt Entwicklern, Getter- und Setter-Methoden für die Kapselung zu verwenden, falls erforderlich.
+
+## Interfaces
+
+### Java
+Java-Interfaces definieren Vorschriften, welche eine Klasse erfüllen muss.
+Interfaces können sowohl Standardmethodenimplementierungen als auch statische Methoden enthalten.
+
+### Go
+
+Go-Interfaces werden implizit erfüllt, was bedeutet, dass es nicht notwendig ist, explizit anzugeben, dass ein Typ eine Interface implementiert.
+Größere Interfaces können aus kleineren zusammengesetzt werden.
+
+## Exception Handling
+### Java
+In Java wird das Exception Handling verwendet, um unerwartete Fehler oder
+Ausnahmesituationen während der Laufzeit eines Programms zu behandeln. Zur
+Fehlerbehandlung zur Verfügung stehen `try`, `catch`, `throw` und `finally`.
+
+### Go
+In Go wird im Gegensatz zu Java auf konventionelle Rückgabewerte für Fehlerbehandlung
+gesetzt. In Go gibt es keine Exceptions oder herkömmlichen Try/Catch-Blöcke. Funktionen geben normalerweise einen speziellen Fehlerwert zurück, der vom
+Aufrufer geprüft wird, um auf Fehler zu reagieren.
+
+## Fazit
+Die Objektorientierung in Java und Go verfolgen unterschiedliche Ansätze.
+Java, als eine etablierte objektorientierte Sprache, betont klassische Konzepte wie
+Klassen, Vererbung und Interfaces und bietet eine umfassende Standardbibliothek.
+Go setzt im Gegensatz dazu auf eine einfachere und effizientere Herangehensweise, die
+sich auf structs, Komposition, Einbettung von types und Interfaces stützt. 
+
+## Vor- und Nachteile
+
+### Java
+
+| Vorteile                     | Nachteile          |
+|------------------------------|--------------------|
+| Plattformunabhängigkeit durch JVM        | Hohe Verbosität          |
+| Umfangreiche Standartbibliothek             | Geringere Leistung        |
+| Starke Community | Steilere Lernkurve / Komplexerer Syntax als Go|
+|  Speichermanagement           | Speicherkonsumierung |
+
+### Go
+
+| Vorteile                     | Nachteile          |
+|--------------------------------|----------------------------|
+| Einfache Syntax     | Weniger etabliere Frameworks        |
+| Nebenläufigkeit durch Goroutinen        | geringere Anzahl an Bibliotheken im Vergleich zu Java    |
+| Unterstützung für Containerisierung                   | Kein Overloading     |
+| Schnelle Kompilierung        | Keine explizite Fehlerbehandlung|
