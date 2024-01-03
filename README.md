@@ -48,7 +48,7 @@ class Rectangle {
 }
 
 public static void main(String[] args) {
-    Shape s = new Rectangle(5, 6);  // This will throw a compile-time error due to the constraints of nominal subtyping
+    Shape s = new Rectangle(5, 6);  // This will throw a compile-time error due to the constraints of nominal subtyping (Shape is not implemented explicitly by Rectangle!)
 }
 ```
 
@@ -86,3 +86,14 @@ andere Struktur einbetten, wodurch die eingebettete Struktur Eigenschaften und M
 der äußeren Struktur "erbt". Mehrfachvererbung, aber in einer flexibleren Form, wird durch
 Mehrfacheinbettung erreicht. Die Vererbung in Go betont die Idee der Komposition und
 ermöglicht die Wiederverwendung von Code durch das Einbetten von Strukturen.
+
+## Polymorphismus
+
+### Java
+Polymorphismus ist ein Konzept der objektorientierten Programmierung, das die Fähigkeit
+eines Objekts beschreibt, in verschiedenen Formen oder Typen aufzutreten.
+In Java kann ein Objekt einer Klasse Subklasse verwendet werden kann, falls ein Objekt einer Superklasse erwartet wird. Ferner wird Polymorphismus durch Overloading und Overriding realisiert. Überladen ermöglicht es,
+mehrere Methoden mit demselben Namens in einer Klasse zu haben, solange sie
+verschiedene Parameter haben.
+Überschreiben tritt auf, wenn eine abgeleitete Klasse eine Methode ihrer Basisklasse mit
+derselben Signatur implementiert.
