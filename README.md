@@ -13,8 +13,8 @@ Mechanismen zur Implementierung von objektorientierten Konzepten. Es folgt ein
 Vergleich zwischen den Prinzipien in Java und in Go.
 
 ## Nominales und Strukturelles Subtyping
-Nominales Subtyping und Strukturelles Subtyping sind zwei verschiedene Ansätze zur
-Typisierung in Programmiersprachen.
+Subtyping bedeutet, dass ein Datentyp als Subtyp eines anderen betrachtet wird. Betrachten wir folgendes Beispiel: Es gibt einen Typ `Tier`, einen Typ `Katze` und einen Typ `Tiger`. Seien nun `Katze` und `Tiger` Subtypen von `Tier`, so können in einem Kontext in welchem der Typ `Tier` erwartet wird sowohl ein Ausdruck vom Typ `Katze` als auch ein Ausdruck vom Typ `Tiger` verwendet werden. Dies ermöglicht mehr Flexibilität und generischen Gebrauch von Datentypen in Programmiersprachen.
+Nominales Subtyping und Strukturelles Subtyping sind zwei verschiedene Ansätze zur Typisierung in Programmiersprachen.
 
 ### Java (Nominal Subtyping)
 
@@ -51,6 +51,7 @@ public static void main(String[] args) {
     Shape s = new Rectangle(5, 6);  // This will throw a compile-time error due to the constraints of nominal subtyping (Shape is not implemented explicitly by Rectangle!)
 }
 ```
+Im obigen Beispiel kommt es zu einem Kompilierfehler da an der kommentierten Stelle `s` vom Typ `Shape` deklariert ist, jedoch versucht wird `s` eine Instanz vom Typ `Rectangle` zuzuweisen. Da `Rectangle` kein expliziter Subtyp von `Shape` ist, geht das nicht. Lösen könnte man diesen Fehler durch das Abändern von `class Rectangle` zu `class Rectangle extends Shape`.
 
 ```go
 type Shape interface {
@@ -72,13 +73,15 @@ func main() {
 }
 ```
 
+In diesem Beispiel kommt es zu keinem Fehler aufgrund von Gos structural subtyping. Zwar ist `Rectangle` kein explizit deklarierter Subtyp von `Shape`, es implementiert jedoch alle Methoden von `Shape` und ist somit ein Subtyp davon. Folglich kann an der kommentierten Stelle, in welcher ein Ausdruck vom Typ `Shape` erwartet wird auch ein Ausdruck vom Type `Rectangle` verwendet werden.
+
 ## Vererbung
 
 ### Java
 In Java wird Vererbung durch das Schlüsselwort `extends` ausgedrückt und
 Klassenhierarchien kommen zum Einsatz. Eine Subklasse kann Eigenschaften und
 Methoden von einer Superklasse bzw. Basisklasse erben. Neben einfacher Vererbung ist
-auch Mehrfachvererbung mit interfaces und dem Schlüsselwort `implements` möglich.
+auch Mehrfachvererbung mit interfaces und dem Schlüsselwort `implements` möglich. Ferner können die Implementierung von virtuelle Methoden in erbenden Klassen durch `@Override` überschrieben werden um mehr Flexibilität zu ermöglichen. Weiterhin können Methoden in Superklassen mit dem Keyword `abstract` als abstrakt deklariert werden, wodurch festgelegt wird, dass deren Implementierung erst in einer Subklasse stattfinden kann.
 
 ### Go
 In Go wird Vererbung durch das Einbetten von types erreicht. Eine Struktur kann eine
@@ -87,7 +90,7 @@ der äußeren Struktur "erbt". Mehrfachvererbung, aber in einer flexibleren Form
 Mehrfacheinbettung erreicht. Die Vererbung in Go betont die Idee der Komposition und
 ermöglicht die Wiederverwendung von Code durch das Einbetten von Strukturen.
 
-## Polymorphismus
+## Subtyp Polymorphismus
 
 ### Java
 Polymorphismus ist ein Konzept der objektorientierten Programmierung, das die Fähigkeit
