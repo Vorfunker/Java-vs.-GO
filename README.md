@@ -86,7 +86,7 @@ auch Mehrfachvererbung mit interfaces und dem Schlüsselwort `implements` mögli
 
 ### Go
 Möchte man Vererbung in Java in Go darstellen so kann man auf embedded fields zurückgreifen. Durch das Embedden werden die Funktionen, die durch die Vererbung in objektorientierten Programmiersprachen möglich sind, bereitgestellt.
-Im folgenden Java Beispiel gibt es die abstrakte Klasse Feline, welche die Methoden isDangerous() und cuteness() bereits implementiert und die Methode makeNoise() deklariert:
+Im folgenden Java Beispiel gibt es die abstrakte Klasse `Feline`, welche die Methoden `isDangerous()` und `cuteness()` bereits implementiert und die Methode `makeNoise()` deklariert:
 ```java
 abstract class Feline {
     int size;
@@ -111,7 +111,7 @@ abstract class Feline {
     }
 }
 ```
-In Go wurde dies mit einem Interface Animal und einem struct Feline umgesetzt. Das Interface deklariert die drei Methoden und das struct enthält die Attribute und implementiert die beiden Methoden isDangerous() und cuteness():
+In Go wurde dies mit einem Interface `Animal` und einem struct `Feline` umgesetzt. Das Interface deklariert die drei Methoden und das struct enthält die Attribute und implementiert die beiden Methoden `isDangerous()` und `cuteness()`:
 ```go
 type Animal interface{
     isDangerous()
@@ -135,7 +135,7 @@ func (f *Feline) cuteness() float32{
     return 100 / float32(f.size) - f.danger
 }
 ```
-In Java erben die beiden Klassen Cat und Feline mit dem Keyword extends von der Klasse Feline und stellen die fehlende Implementierung der abstrakten Klasse bereit:
+In Java erben die beiden Klassen `Cat` und `Feline` mit dem Keyword `extends` von der Klasse `Feline` und stellen die fehlende Implementierung der abstrakten Klasse bereit:
 ```java
 class Lion extends Feline {
     @Override
@@ -193,8 +193,8 @@ func (c *Cat) makeNoise() {
     println("Miau")
 }
 ```
-Die structs Lion und Cat haben jeweils Feline im Body enthalten um die Methoden von Feline verwenden zu können.
-Im Beispiel können sowohl l1, als auch c1 die von Feline implementierten funcs aufrufen:
+Die structs `Lion` und `Cat` haben jeweils `Feline` im Body enthalten um die Methoden von `Feline` verwenden zu können.
+Im Beispiel können sowohl `l1`, als auch `c1` die von `Feline` implementierten funcs aufrufen:
 ```go
 func main() {
     l1 := Lion{Feline{30,10}}
