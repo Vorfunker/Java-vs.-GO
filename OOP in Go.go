@@ -50,11 +50,3 @@ func main() {
 	fmt.Println("Is the Lion dangerous? -> ", l1.isDangerous())
 	fmt.Println("Is the Cat dangerous? -> ", c1.isDangerous())
 }
-
-
-
-
-
-
-
-
