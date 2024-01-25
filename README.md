@@ -1,7 +1,7 @@
 # OOP Java-vs.-GO
 
 ## Intro
-Java und Go sind zwei vielseitige Programmiersprachen mit vielen Gemeinsamkeiten.
+Java und Go sind zwei vielseitige Programmiersprachen mit weitverbreiteten Anwendungsbereichen.
 Während Java zu den älteren und etablierteren Programmiersprachen zählt, die die
 objektorientierte Programmierung maßgeblich geprägt hat und umfassende Prinzipien und
 Funktionen zur Anwendungsentwicklung bietet, zeichnet sich Go durch seine Einfachheit
