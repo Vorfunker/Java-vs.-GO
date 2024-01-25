@@ -160,6 +160,7 @@ class Cat extends Feline {
 }
 ```
 Diese beiden Klassen können nun auch die Methoden der abstrakten Oberklasse aufrufen:
+```java
 public class Main
 {
 	public static void main(String[] args) {
