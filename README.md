@@ -13,8 +13,9 @@ Mechanismen zur Implementierung von objektorientierten Konzepten. Es folgt ein
 Vergleich zwischen den Prinzipien in Java und in Go.
 
 ## Nominales und Strukturelles Subtyping
-Subtyping bedeutet, dass ein Datentyp als Subtyp eines anderen betrachtet wird. Betrachten wir folgendes Beispiel: Es gibt einen Typ `Tier`, einen Typ `Katze` und einen Typ `Tiger`. Seien nun `Katze` und `Tiger` Subtypen von `Tier`, so können in einem Kontext in welchem der Typ `Tier` erwartet wird sowohl ein Ausdruck vom Typ `Katze` als auch ein Ausdruck vom Typ `Tiger` verwendet werden. Dies ermöglicht mehr Flexibilität und generischen Gebrauch von Datentypen in Programmiersprachen.
-Nominales Subtyping und Strukturelles Subtyping sind zwei verschiedene Ansätze zur Typisierung in Programmiersprachen.
+Subtyping ist eine spezielle Form von Polymorphismus und bedeutet, dass ein Datentyp als Subtyp eines anderen betrachtet wird, wodurch Typen in verschiedenen Kontexten und Formen vielseitig verwendet werden können. 
+Betrachten wir folgendes Beispiel: Es gibt einen Typ `Tier`, einen Typ `Katze` und einen Typ `Tiger`. Seien nun `Katze` und `Tiger` Subtypen von `Tier`, so können in einem Kontext in welchem der Typ `Tier` erwartet wird sowohl ein Ausdruck vom Typ `Katze` als auch ein Ausdruck vom Typ `Tiger` verwendet werden. Dies ermöglicht mehr Flexibilität und generischen Gebrauch von Datentypen in Programmiersprachen.
+Nominales Subtyping und Strukturelles Subtyping sind zwei verschiedene Ansätze zur Umsetzung von Subtyp-Polymorphismus in Programmiersprachen.
 
 ### Java (Nominal Subtyping)
 
@@ -90,20 +91,6 @@ der äußeren Struktur "erbt". Mehrfachvererbung, aber in einer flexibleren Form
 Mehrfacheinbettung erreicht. Die Vererbung in Go betont die Idee der Komposition und
 ermöglicht die Wiederverwendung von Code durch das Einbetten von Strukturen.
 
-## Subtyp Polymorphismus
-
-### Java
-Polymorphismus ist ein Konzept der objektorientierten Programmierung, das die Fähigkeit
-eines Objekts beschreibt, in verschiedenen Formen oder Typen aufzutreten.
-In Java kann ein Objekt einer Klasse Subklasse verwendet werden kann, falls ein Objekt einer Superklasse erwartet wird. Ferner wird Polymorphismus durch `Overloading` und `Overriding` realisiert. `Overloading` ermöglicht es,
-mehrere Methoden mit demselben Namens in einer Klasse zu haben, solange sie
-verschiedene Parameter haben.
-`Overriding` tritt auf, wenn eine abgeleitete Klasse eine Methode ihrer Basisklasse mit
-derselben Signatur implementiert.
-
-### Go
-In Go wird Polymorphismus mithilfe von Interfaces erreicht. Jeder Typ, der alle Methoden einer Schnittstelle implementiert, erfüllt diese Schnittstelle. Im Gegensatz zu Java unterstützt Go weder Methodenüberladung noch -überschreibung. Im obigen Beispiel ist Rectangle ein Subtyp von Shape, da es alle Methoden (hier nur `Area()`) implementiert.
-
 ## Verkapselung
 
 ### Java
@@ -122,7 +109,6 @@ Java-Interfaces definieren Vorschriften, welche eine Klasse erfüllen muss.
 Interfaces können sowohl Standardmethodenimplementierungen als auch statische Methoden enthalten.
 
 ### Go
-
 Go-Interfaces werden implizit erfüllt, was bedeutet, dass es nicht notwendig ist, explizit anzugeben, dass ein Typ eine Interface implementiert.
 Größere Interfaces können aus kleineren zusammengesetzt werden.
 
