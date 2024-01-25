@@ -85,11 +85,127 @@ Methoden von einer Superklasse bzw. Basisklasse erben. Neben einfacher Vererbung
 auch Mehrfachvererbung mit interfaces und dem Schlüsselwort `implements` möglich. Ferner können die Implementierung von virtuelle Methoden in erbenden Klassen durch `@Override` überschrieben werden um mehr Flexibilität zu ermöglichen. Weiterhin können Methoden in Superklassen mit dem Keyword `abstract` als abstrakt deklariert werden, wodurch festgelegt wird, dass deren Implementierung erst in einer Subklasse stattfinden kann.
 
 ### Go
-In Go wird Vererbung durch das Einbetten von types erreicht. Eine Struktur kann eine
-andere Struktur einbetten, wodurch die eingebettete Struktur Eigenschaften und Methoden
-der äußeren Struktur "erbt". Mehrfachvererbung, aber in einer flexibleren Form, wird durch
-Mehrfacheinbettung erreicht. Die Vererbung in Go betont die Idee der Komposition und
-ermöglicht die Wiederverwendung von Code durch das Einbetten von Strukturen.
+Möchte man Vererbung in Java in Go darstellen so kann man auf embedded fields zurückgreifen. Durch das Embedden werden die Funktionen, die durch die Vererbung in objektorientierten Programmiersprachen möglich sind, bereitgestellt.
+Im folgenden Java Beispiel gibt es die abstrakte Klasse Feline, welche die Methoden isDangerous() und cuteness() bereits implementiert und die Methode makeNoise() deklariert:
+```java
+abstract class Feline {
+    int size;
+    double danger;
+    
+    public boolean isDangerous(){
+        if (this.danger > 5) {
+            return true;
+        }
+        return false;
+    }
+    
+    public abstract void makeNoise();
+    
+    public double cuteness() {
+        return 100 / (double)this.size - this.danger;
+    }
+    
+    public Feline(int size, double danger){
+        this.size = size;
+        this.danger = danger;
+    }
+}
+```
+In Go wurde dies mit einem Interface Animal und einem struct Feline umgesetzt. Das Interface deklariert die drei Methoden und das struct enthält die Attribute und implementiert die beiden Methoden isDangerous() und cuteness():
+```go
+type Animal interface{
+    isDangerous()
+    makeNoise()
+    cuteness() float32
+}
+
+type Feline struct{
+    size int
+    danger float32
+}
+
+func (f *Feline) isDangerous() bool{
+    if (f.danger > 5){
+        return true
+    }
+    return false
+}
+
+func (f *Feline) cuteness() float32{
+    return 100 / float32(f.size) - f.danger
+}
+```
+In Java erben die beiden Klassen Cat und Feline mit dem Keyword extends von der Klasse Feline und stellen die fehlende Implementierung der abstrakten Klasse bereit:
+```java
+class Lion extends Feline {
+    @Override
+    public void makeNoise(){
+        System.out.println("Raaawrr");
+    }
+    
+    public Lion (int size, double danger){
+        super(size, danger);
+    }
+}
+
+class Cat extends Feline {
+    @Override
+    public void makeNoise(){
+        System.out.println("Miau");
+    }
+    
+    public Cat (int size, double danger){
+        super(size, danger);
+    }
+}
+```
+Diese beiden Klassen können nun auch die Methoden der abstrakten Oberklasse aufrufen:
+public class Main
+{
+	public static void main(String[] args) {
+		Lion l1 = new Lion(30, 10);
+		Cat c1 = new Cat(10, 2);
+		System.out.println("Cuteness Lion: " + l1.cuteness());
+		System.out.println("Cuteness Cat: " + c1.cuteness());
+		l1.makeNoise();
+		c1.makeNoise();
+		System.out.println("Is the Lion dangerous? -> " + l1.isDangerous());
+		System.out.println("Is the Cat dangerous? -> " + c1.isDangerous());
+	}
+}
+```
+In Go wird diese Funktionalität mit embedded structs bereitgestellt:
+```go
+type Lion struct{
+    Feline
+}
+
+func (l *Lion) makeNoise() {
+    println("Raaawrr")
+}
+
+type Cat struct{
+    Feline
+}
+
+func (c *Cat) makeNoise() {
+    println("Miau")
+}
+```
+Die structs Lion und Cat haben jeweils Feline im Body enthalten um die Methoden von Feline verwenden zu können.
+Im Beispiel können sowohl l1, als auch c1 die von Feline implementierten funcs aufrufen:
+```go
+func main() {
+    l1 := Lion{Feline{30,10}}
+    c1 := Cat{Feline{10,2}}
+    fmt.Println("cuteness Lion: ", l1.cuteness())
+    fmt.Println("Cuteness Cat: ", c1.cuteness())
+	l1.makeNoise()
+	c1.makeNoise()
+	fmt.Println("Is the Lion dangerous? -> ", l1.isDangerous())
+	fmt.Println("Is the Cat dangerous? -> ", c1.isDangerous())
+}
+```
 
 ## Verkapselung
 
