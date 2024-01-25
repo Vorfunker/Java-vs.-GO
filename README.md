@@ -23,7 +23,7 @@ Java verwendet nominale Subtypisierung, was bedeutet, dass die Frage, ob ein Typ
 
 ### Go (Structural Subtyping)
 
-In Go wird strukturelle Subtypisierung verwendet, speziell für Interfaces. In Go wird ein Typ als die Schnittstelle erfüllend betrachtet, wenn er alle Methoden enthält, die in dieser Schnittstelle definiert sind, selbst wenn dies nicht explizit erklärt wird. Dies wird ausschließlich anhand der Struktur des Typs bestimmt - wenn er die erforderlichen Methoden hat, erfüllt er die Schnittstelle. Es ist nicht notwendig, explizit anzugeben, dass ein Typ eine Schnittstelle implementiert. Dies ermöglicht eine Art von "Duck-Typing", bei dem der Typ einer Variablen weniger wichtig ist als das Verhalten, das er unterstützt.
+In Go wird strukturelle Subtypisierung verwendet, speziell für Interfaces. In Go wird ein Typ als die Schnittstelle erfüllend betrachtet, wenn er alle Methoden enthält, die in dieser Schnittstelle definiert sind, selbst wenn dies nicht explizit deklariert wird. Dies wird ausschließlich anhand der Struktur des Typs bestimmt - wenn er die erforderlichen Methoden implementiert, so erfüllt er die Schnittstelle. Es ist nicht notwendig, explizit anzugeben, dass ein Typ eine Schnittstelle implementiert. Dies ermöglicht eine Art von "Duck-Typing", bei dem der Typ einer Variablen weniger wichtig ist als das Verhalten, das er unterstützt.
 
 ### Beispiele
 
